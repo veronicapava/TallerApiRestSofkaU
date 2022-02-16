@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -17,9 +18,26 @@ public class UsuarioService {
         return (ArrayList<UsuarioModel>) usuarioRepository.findAll();
     }
 
-    //Metodo para guardar usuario, si le enviamos el id actualiza el usuario, si no se lo enviamos
-    //Crea uno nuevo
+    //Metodo para guardar usuario, si le enviamos el id actualiza el usuario, si no se lo enviamos crea uno nuevo
     public UsuarioModel guardarUsuarios(UsuarioModel usuario){
         return usuarioRepository.save(usuario);
+    }
+
+    //Optional para que devuelva si existe el parametro que le pasemos
+    public Optional<UsuarioModel> obtenerPorID(Long id){
+        return usuarioRepository.findById(id);
+    }
+
+    public ArrayList<UsuarioModel> obtenerPorPrioridad(Integer prioridad){
+        return usuarioRepository.findByPrioridad(prioridad);
+    }
+
+    public boolean eliminarUsuario(Long id){
+        try{
+            usuarioRepository.deleteById(id);
+            return true;
+        } catch (Exception err){
+            return false;
+        }
     }
 }
