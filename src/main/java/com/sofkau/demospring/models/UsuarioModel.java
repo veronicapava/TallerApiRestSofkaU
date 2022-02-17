@@ -6,14 +6,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "usuario")
 public class UsuarioModel {
-    //Se crean propiedades
+    //Mejora: se coloca un numero de columnas y no se permite que las propiedades sean nulas.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, length =20, nullable = false)
     private Long id;
+    @Column(length = 20, nullable = false)
     private String nombre;
+    @Column(length = 20, nullable = false)
     private String email;
+    @Column(length = 20, nullable = false)
     private Integer prioridad;
 
 
@@ -50,8 +53,4 @@ public class UsuarioModel {
     public void setPrioridad(Integer prioridad) {
         this.prioridad = prioridad;
     }
-
-
-
-
 }
