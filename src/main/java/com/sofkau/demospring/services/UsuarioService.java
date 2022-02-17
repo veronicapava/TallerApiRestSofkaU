@@ -37,6 +37,11 @@ public class UsuarioService {
         return usuarioRepository.findByNombre(nombre);
     }
 
+    //Mejora: se añade metodo para buscar por email
+    public ArrayList<UsuarioModel> obtenerPorEmail(String email){
+        return usuarioRepository.findByEmail(email);
+    }
+
     public boolean eliminarUsuario(Long id){
         try{
             usuarioRepository.deleteById(id);

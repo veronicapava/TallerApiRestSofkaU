@@ -2,7 +2,6 @@ package com.sofkau.demospring.models;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "usuario")
 public class UsuarioModel {

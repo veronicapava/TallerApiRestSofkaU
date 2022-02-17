@@ -8,21 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
-
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-    //Metodo para obtener usuario
+    //Metodo para obtener usuarios
     @GetMapping()
     public ArrayList<UsuarioModel> obtenerUsuarios(){
         return usuarioService.obtenerUsuarios();
     }
 
-    //Metodo para regresar el usuario con id
+
     @PostMapping()
     public UsuarioModel guardarUsuario(@RequestBody UsuarioModel usuario){
         return this.usuarioService.guardarUsuarios(usuario);
@@ -44,6 +42,12 @@ public class UsuarioController {
     @GetMapping(path = "/nombre")
     public ArrayList<UsuarioModel> obtenerUsuarioPorNombre(@RequestParam("nombre") String nombre){
         return  this.usuarioService.obtenerPorNombre(nombre);
+    }
+
+    //Mejora: se agrega metodo para obtener por email
+    @GetMapping(path = "/email")
+    public ArrayList<UsuarioModel> obtenerUsuarioPorEmail(@RequestParam("email") String email){
+        return  this.usuarioService.obtenerPorEmail(email);
     }
 
     //Metodo para eliminar usuario
