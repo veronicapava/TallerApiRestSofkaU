@@ -32,6 +32,11 @@ public class UsuarioService {
         return usuarioRepository.findByPrioridad(prioridad);
     }
 
+    //Mejora: se añade metodo para buscar por nombre
+    public ArrayList<UsuarioModel> obtenerPorNombre(String nombre){
+        return usuarioRepository.findByNombre(nombre);
+    }
+
     public boolean eliminarUsuario(Long id){
         try{
             usuarioRepository.deleteById(id);

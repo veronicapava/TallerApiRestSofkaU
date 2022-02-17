@@ -7,6 +7,6 @@ import java.util.ArrayList;
 
 @Repository
 public interface UsuarioRepository extends CrudRepository<UsuarioModel, Long> {
-    //Busqueda por prioridad por ejemplo
     ArrayList<UsuarioModel> findByPrioridad(Integer prioridad);
+    ArrayList<UsuarioModel> findByNombre(String nombre);
 }

@@ -1,6 +1,5 @@
 package com.sofkau.demospring.controllers;
 
-
 import com.sofkau.demospring.models.UsuarioModel;
 import com.sofkau.demospring.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,19 +8,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-    //Metodo para obtener usuario GET
+    //Metodo para obtener usuario
     @GetMapping()
     public ArrayList<UsuarioModel> obtenerUsuarios(){
         return usuarioService.obtenerUsuarios();
     }
 
-    //Metodo para regresar el usuario con id  POST
+    //Metodo para regresar el usuario con id
     @PostMapping()
     public UsuarioModel guardarUsuario(@RequestBody UsuarioModel usuario){
         return this.usuarioService.guardarUsuarios(usuario);
@@ -37,6 +38,12 @@ public class UsuarioController {
     @GetMapping("/query")
     public ArrayList<UsuarioModel> obtenerUsuarioPorPrioridad(@RequestParam("prioridad") Integer prioridad){
         return  this.usuarioService.obtenerPorPrioridad(prioridad);
+    }
+
+    //Mejora: se agrega metodo para obtener por nombre
+    @GetMapping(path = "/nombre")
+    public ArrayList<UsuarioModel> obtenerUsuarioPorNombre(@RequestParam("nombre") String nombre){
+        return  this.usuarioService.obtenerPorNombre(nombre);
     }
 
     //Metodo para eliminar usuario
